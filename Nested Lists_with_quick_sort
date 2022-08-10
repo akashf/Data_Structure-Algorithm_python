@@ -1,0 +1,52 @@
+
+if __name__ == '__main__':
+    list_items = []
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        list_entry_of_name_and_score = [name,score]
+        list_items.append(list_entry_of_name_and_score)
+  
+    def quick_sort(list_items,p,r):
+        if(p<r):
+            pivot_index = partition(list_items,p,r)
+            quick_sort(list_items,p,pivot_index-1)
+            quick_sort(list_items,pivot_index+1,r)
+            
+        pass
+        
+    
+    def partition(list_items,p,r):
+        pivot = list_items[p][1]
+        i = p
+        for j in range (p+1,r):
+            if(list_items[j][1] <= pivot ):
+                i = i+1
+                swap(list_items,i,j)
+        swap(list_items,p,i)
+        return i
+        
+    def swap(list_items,i,j):
+        temp = list_items[i]
+        list_items[i] = list_items[j]
+        list_items[j] =temp   
+        pass
+        
+        
+    quick_sort(list_items,0,len(list_items))
+    
+    
+    uniq = set()
+    for i in range(0,len(list_items)):
+        uniq.add(float(list_items[i][1]))
+    
+    second_lst_el = sorted(list(uniq))
+    stringPrint = []
+    
+    for i in range(0,len(list_items)):
+        if(second_lst_el[1] == list_items[i][1]):
+            stringPrint.append(list_items[i][0])
+    
+    for i in sorted(stringPrint):
+        print(i)
+   
