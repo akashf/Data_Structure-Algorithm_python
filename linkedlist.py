@@ -6,109 +6,80 @@
 # Return the size (length) of the linked list
 
 
-
 class Node:
     def __init__(self, value):
         self.value = value
         self.next = None
 
-#createlinked list one time
-def linkedlistCreation(listV):
-    head = None  # Initialize head variable
-    tail = None  # Initialize tail variable
-    for i in listV:
-        if head is None:
-            head = Node(i)
-            tail = head
-        else:
-            tail.next = Node(i)
-            tail = tail.next
-    return head
 
-#function to convert linked list to list
-def listCreationFromLinkedList(head):
-    listV = []
-    while head is not None:
-        listV.append(head.value)
-        head = head.next
-    return listV
+def createLinkedList(lt):
+    head = Node(0)
+    tail = head
+    for i in lt:
+        tail.next = Node(i)
+        tail = tail.next
+    return head.next
 
-#function to prepend a value to linked list
-def prepend(head, value):
-    new_head = Node(value)
-    new_head.next = head
-    return new_head
+def traverseList(hd):
+    lstnew = []
+    while hd:
+        lstnew.append(hd.value)
+        hd = hd.next
+    return lstnew
 
-#search for a value in linked list
-def searchLinkedList(head, value):
-    while head is not None:
-        if head.value == value:
-            return True
-        else:
-            head = head.next
-    return False
-
-#remove a node from element
-def removeFromLinkedList(head, ele):
-    if head.value == ele:
-        return head.next
-    current = head.next
-    prev = head
-    while current is not None:
-        if current.value == ele:
-            prev.next = current.next
-            break
-        prev = current
-        current = current.next
-    return head
-        
-        
-#calculate length of linked list
-
-def calculateLength(head):
-    count = 0
-    while head is not None:
-        count = count+1
-        head = head.next
-    return count
-
-#reverse the linked list
-def reversList(head):
+def reverseList(hd):
     prev = None
-    current = head
-    while current is not None:
-        next = current.next
-        current.next = prev
-        prev = current
-        current = next
+    while hd:
+        print(hd.value)
+        temp = hd
+        hd = hd.next
+        temp.next = prev
+        prev = temp
     return prev
 
 
+#finding linked list is circular or not
+#so if linked list is circular so it will point out prev nodes. 
+# will use two pointers one move one time seconed two , if its not cirular 
+#single node mover reach to end and never meet secord two step one, it cicular it will catchup with single one in iter
 
-lista = [1,2,3,4,5]
-head = linkedlistCreation(lista)
-listP = listCreationFromLinkedList(head)
-print(listP)
-
-#list after prepand
-prependhead = prepend(head, 0)
-listPrepend = listCreationFromLinkedList(prependhead)
-print(listPrepend)
-
-#search for list
-search = searchLinkedList(head, 9)
-print("sttus of of the element", search )
-
-#remove element from linked list
-remove = removeFromLinkedList(head, 3)
-listRemove = listCreationFromLinkedList(remove)
-print(listRemove)
+def isCircular(hd):
+    if hd is None:
+        return False
+    fast, slow = hd, hd
+    while fast and fast.next :
+        fast, slow = fast.next.next, slow.next
+        if fast == slow:
+            return True
+    return False
 
 
-#calculate length of linked list
-len = calculateLength(head)
-print(len)
 
-#revierse the linked list
-reverse = reversList(head)
-print(listCreationFromLinkedList(reverse))
+
+lista = [4,2,5,1,-3,0]
+print('list we have' , lista)
+hd = createLinkedList(lista)
+print('head of linkedlist', hd)
+trverlist = traverseList(hd)
+print("created list from linked", trverlist)
+tempr = reverseList(hd)
+print("revese list", traverseList(tempr))
+print("revese list")
+
+cl = createLinkedList([2, -1, 3, 0, 5])
+
+
+# Creating a loop where the last node points back to the second node
+loop_start = cl.next
+
+while cl.next: 
+    cl = cl.next   
+cl.next = loop_start
+# You will encouter the unlimited loop
+# Click on stop
+# Then right click on `clear outpit`
+# while cl.next:
+#     print(cl.val)
+#     cl = cl.next
+   
+print('is linked list circular', isCircular(hd))
