@@ -73,6 +73,8 @@ if ls.nextElement == 0:
     print( True)
 else:
     print( False)
+
+
         
     
 
