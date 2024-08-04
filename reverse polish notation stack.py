@@ -33,12 +33,12 @@ class stack:
         self.noOfElement += 1
     
     def pop(self):
-        if self.isEmpty() is None:
+        if self.isEmpty():
             return None
         else:
             temp = self.head.value
             self.head = self.head.Next
-        self.noOfElement -= 1
+            self.noOfElement -= 1
         return temp
     
     def isEmpty(self):
@@ -51,3 +51,26 @@ class stack:
         
     def size(self):
         return self.noOfElement
+    
+
+lstInput = ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]   #["3", "1", "+", "4", "*"]
+s = stack()
+
+
+for i in lstInput:
+    if i in ['*', '+', '-', '/']:
+        op2 = s.pop()
+        op1 = s.pop()
+        if i == '+':
+            result = op1+op2
+        elif i == '-':
+            result = op1-op2
+        elif i == '*':
+            result = op1*op2
+        elif i == '/':
+            result = int(op1/op2)
+        s.push(result)
+    else:
+        s.push(int(i))  # Convert to int before pushing
+
+print(s.pop())
