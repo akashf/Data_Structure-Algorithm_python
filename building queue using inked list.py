@@ -32,6 +32,16 @@ class Queue:
             self.noOfElement -= 1
             return item
         
+    def reverse(self):
+        prev = None
+        while self.head:
+            temp = self.head
+            self.head = self.head.next
+            temp.next = prev
+            prev = temp
+        return prev
+    
+
     def size(self):
         return self.noOfElement
     
@@ -45,9 +55,9 @@ lista = [1,2,3,4,5]
 
 for i in lista:
     q.Enqueue(i)
-t = Queue()
-while not q.isEmpty():
-    print(t.Enqueue(q.Dequeue()))
 
-while not t.isEmpty():
-    print(t.Dequeue())
+pr = q.reverse()
+while pr is not None:
+    print(pr.value)
+    pr = pr.next
+
