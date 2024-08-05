@@ -45,6 +45,9 @@ lista = [1,2,3,4,5]
 
 for i in lista:
     q.Enqueue(i)
-
+t = Queue()
 while not q.isEmpty():
-    print(q.Dequeue())
+    print(t.Enqueue(q.Dequeue()))
+
+while not t.isEmpty():
+    print(t.Dequeue())
