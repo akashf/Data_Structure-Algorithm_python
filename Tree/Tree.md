@@ -64,3 +64,43 @@ A tree where the height of the left and right subtrees differs significantly:
 ## Usage
 * **Database**: Trees are used to index data for efficient querying.
 * **Machine Learning**: Decision Trees are used for classification and regression tasks.
+
+Here is the markdown code with the steps to create a binary tree:
+MarkDown
+
+# Creating a Binary Tree
+=========================
+
+## Steps to Create a Binary Tree
+-----------------------------
+
+1. **Create Root Node**: Create the first node of the tree, which will be the root node.
+2. **Set Left and Right Nodes**: Set the left and right child nodes of the current node.
+3. **Increase Tail Node to Next Level**: Move to the next level of the tree by increasing the tail node.
+4. **Check Current Node's Left and Right Values**:
+	* If the current node's left and right values are not null, move to the left node.
+	* Else, assign the value to the current node and move to the left node.
+5. **Repeat Steps 3-4**: Repeat steps 3-4 until all nodes have been assigned values.
+
+## Example
+-----------
+
+Let's create a binary tree with the following values: 1, 2, 3, 4, 5
+
+1. Create Root Node: `1`
+2. Set Left and Right Nodes: `1` has left child `2` and right child `3`
+3. Increase Tail Node to Next Level: Move to next level
+4. Check Current Node's Left and Right Values:
+	* `2` has left child `4` and right child `5`
+	* `3` has no children
+5. Repeat Steps 3-4: No more nodes to assign values to
+
+## Resulting Binary Tree
+------------------------
+1
+/
+2 3
+/
+4 5
+
+Note: This is a basic example of creating a binary tree. There are many variations and optimizations depending on the specific use case.
